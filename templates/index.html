@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>即时新闻聚合平台</title>
+  </head>
+
+  <body>
+    <div>
+      <!-- 新闻展示 -->
+      新闻（共{{ news_data|length }}条）
+      <div class="data">
+        {% for item in news_data %}
+
+        <li>
+          <div class="categories">"["{{ item.category }}"]"</div>
+
+          <div class="title">
+            <a href="{{ item.link }}">{{ item.title }}</a>
+          </div>
+
+          <div class="time">{{ item.time }}</div>
+        </li>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
