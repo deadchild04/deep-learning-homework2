@@ -1,27 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
+    <meta charset="UTF-8" />
     <title>即时新闻聚合平台</title>
+    <!-- 引入echarts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+    <!-- 引入bootstrap -->
+    <link rel="stylesheet" href="https://cdn.staticfile.net/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="https://cdn.staticfile.net/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.net/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <body>
     <div>
-      <!-- 新闻展示 -->
-      新闻（共{{ news_data|length }}条）
-      <div class="data">
-        {% for item in news_data %}
+      <!-- 新闻分类拼图展示 -->
+      新闻（共{{ analysis.news_list|length }}条）
+      <div>
+        <div><h5>新闻分类分布</h5></div>
+        <div id="chart" style="height: 400px"></div>
+        <script type="text/javascript">
+          var chartDom = document.getElementById('chart');
+          var myChart = echarts.init(chartDom);
+          var datafromapp={{ analysis.count_category|category_data|tojson }};
 
-        <li>
-          <div class="categories">"["{{ item.category }}"]"</div>
-
-          <div class="title">
-            <a href="{{ item.link }}">{{ item.title }}</a>
-          </div>
-
-          <div class="time">{{ item.time }}</div>
-        </li>
-        {% endfor %}
+          var option = {
+                series : [
+                    {
+                        name: '新闻分类分布',
+                        type: 'pie',
+                        radius: '90%',
+                        data:datafromapp
+                    }
+                ]
+            };
+          myChart.setOption(option);
+        </script>
       </div>
+
+      <!-- 新闻饼图展示结束 -->
+
+      <!-- 新闻列表展示 -->
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>分类</th>
+              <th>标题</th>
+              <th>时间</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in analysis.news_list %}
+            <tr>
+                <td class="categories">"["{{ item.category }}"]"</td>
+                <td class="title">
+                  <a href="{{ item.link }}">{{ item.title }}</a>
+                </td>
+                <td class="time">{{ item.time }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- 新闻列表展示结束 -->
     </div>
   </body>
 </html>

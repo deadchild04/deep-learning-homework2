@@ -32,3 +32,16 @@ class NewsCrawler:
         except requests.RequestException as e:
             print(f"请求失败: {e}")
             return []
+        
+class Newsanalysis:
+    def __init__(self, news_list):
+        self.news_list = news_list
+        self.count_category = {}
+
+    def count_category_news(self):
+        for news in self.news_list:
+            category = news['category']
+            if category in self.count_category:
+                self.count_category[category] += 1
+            else:
+                self.count_category[category] = 1
