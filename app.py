@@ -11,7 +11,14 @@ def category_data(count_category):
         lt.append({'value':num,'name':category})
     return lt
 
+def get_category_name(count_category):
+    lt=[]
+    for category,_ in count_category.items():
+        lt.append(category)
+    return lt
+
 app.add_template_filter(category_data, 'category_data')
+app.add_template_filter(get_category_name, 'get_category_name')
 
 def get_all_news(url='https://www.chinanews.com/scroll-news/news1.html'):
     crawler = NewsCrawler(url)

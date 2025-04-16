@@ -37,7 +37,7 @@ class Newsanalysis:
     def __init__(self, news_list):
         self.news_list = news_list
         self.count_category = {}
-
+        
     def count_category_news(self):
         for news in self.news_list:
             category = news['category']

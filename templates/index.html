@@ -45,13 +45,24 @@
         <input type="submit" value="提交">
 
       </form>
-
+<!--
       <form action="/process" method="post"> 
         <label for="name">想查找新闻类别：</label>
         <input type="text" name="category" required>  
         <input type="submit" value="提交">
 
       </form>
+-->
+      <form action="/process" method="post">
+        <label for="name">想查找新闻类别：</label>
+        <select name="category">
+        {% for category in analysis.count_category|get_category_name %}
+        <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+        </select>
+        <input type="submit" value="提交">
+      </form>
+        
 
 
       <!-- 新闻列表展示 -->
