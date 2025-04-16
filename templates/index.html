@@ -39,6 +39,13 @@
 
       <!-- 新闻饼图展示结束 -->
 
+      <form action="/" method="post">
+        <label for="name">想查找的日期（例：20240101）：</label>
+        <input type="text" name="time" required>  
+        <input type="submit" value="提交">
+    </form>
+
+
       <!-- 新闻列表展示 -->
       <div>
         <table class="table table-striped">
@@ -52,7 +59,7 @@
           <tbody>
             {% for item in analysis.news_list %}
             <tr>
-                <td class="categories">"["{{ item.category }}"]"</td>
+                <td class="categories">[{{ item.category }}]</td>
                 <td class="title">
                   <a href="{{ item.link }}">{{ item.title }}</a>
                 </td>

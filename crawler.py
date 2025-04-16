@@ -2,9 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 
 class NewsCrawler:
-    def __init__(self):
-        self.url='https://www.chinanews.com/scroll-news/news1.html'
-
+    def __init__(self,url):
+        self.url=url
+        
     def parse_news(self, html):
         soup = BeautifulSoup(html, 'html.parser')
         news_items = []
