@@ -40,10 +40,18 @@
       <!-- 新闻饼图展示结束 -->
 
       <form action="/" method="post">
-        <label for="name">想查找的日期（例：20240101）：</label>
+        <label for="name">想查找的日期（例：20250101）：</label>
         <input type="text" name="time" required>  
         <input type="submit" value="提交">
-    </form>
+
+      </form>
+
+      <form action="/process" method="post"> 
+        <label for="name">想查找新闻类别：</label>
+        <input type="text" name="category" required>  
+        <input type="submit" value="提交">
+
+      </form>
 
 
       <!-- 新闻列表展示 -->
